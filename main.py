@@ -29,7 +29,12 @@ def login(username, password, lesson_no, chrome_driver_path, queue):
     options.add_argument("--disable-blink-features")
     options.add_argument("--disable-blink-features=AutomationControlled")
 
-    service = Service(executable_path=chrome_driver_path)
+    try:
+        service = Service(executable_path=chrome_driver_path)
+        service.start()
+    except:
+        messagebox.showwarning("输入错误", "ChromeDriver路径错误")
+        return
 
     driver = webdriver.Chrome(service=service, options=options)
 
@@ -286,6 +291,7 @@ def create_gui():
     window.mainloop()
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()  # 为了在Windows上支持多进程
     process = None
     driver = None
     create_gui()
