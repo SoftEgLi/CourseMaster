@@ -4,4 +4,3 @@
 python main.py
 ```
 
-还有通过http请求来跳过验证码的程序，follow-star，然后联系我，我会发给你。
